@@ -8,8 +8,9 @@ export class HomeService {
   private readonly _httpClient = inject(HttpClient);
 
   home(formData: FormData) {
-    return this._httpClient.post('', formData, {
-      responseType: 'blob'
-    });
+    return this._httpClient.post(
+      'http://localhost:3000/same-engenharia/api/automatizar/gerar-planilha',
+      formData
+    );
   }
 }

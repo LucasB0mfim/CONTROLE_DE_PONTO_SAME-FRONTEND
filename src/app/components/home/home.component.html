@@ -7,7 +7,7 @@
 
     <div class="home__fields">
       @if (selectedFile === null) {
-      <input type="file" class="home__fields-input" (change)="onFileSelected($event)" accept=".docx" required />
+      <input type="file" class="home__fields-input" (change)="onFileSelected($event)" accept=".csv" required />
       } @else {
       <button type="button" class="home__button-file" (click)="onHome()" [disabled]="isLoading">
         @if (!isLoading) {

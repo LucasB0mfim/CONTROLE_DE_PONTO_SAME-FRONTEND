@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HomeService } from '../../services/home.service.js';
+import { HomeService } from '../../services/home.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
@@ -18,8 +18,13 @@ export class HomeComponent {
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
-    if (file) {
+    if (file && file.type === 'text/csv') {
       this.selectedFile = file;
+      this.invalidFileMessage = false;
+      this.nullFileMessage = false;
+    } else {
+      this.invalidFileMessage = true;
+      this.selectedFile = null;
     }
   }
 
@@ -35,18 +40,25 @@ export class HomeComponent {
     this.isLoading = true;
 
     const formData = new FormData();
-    formData.append('file', this.selectedFile);
+    formData.append('file', this.selectedFile, this.selectedFile.name);
+
+    // Debug para verificar o formData
+    console.log('Arquivo sendo enviado:', this.selectedFile);
+    formData.forEach((value, key) => {
+      console.log('FormData:', key, value);
+    });
 
     this._homeService.home(formData).subscribe({
-      next: () => {
+      next: (response) => {
         this.isLoading = false;
-        console.log('Arquivo convertido com sucesso!');
+        console.log('Arquivo enviado com sucesso!', response);
+        this.selectedFile = null;
       },
-      error: () => {
+      error: (error) => {
         this.isLoading = false;
         this.invalidFileMessage = true;
         this.selectedFile = null;
-        console.error('Arquivo inválido! Selecione um arquivo .docx');
+        console.error('Erro ao enviar arquivo:', error);
       }
     });
   }
