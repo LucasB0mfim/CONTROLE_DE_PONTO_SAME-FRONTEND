@@ -42,17 +42,15 @@ export class HomeComponent {
     const formData = new FormData();
     formData.append('file', this.selectedFile, this.selectedFile.name);
 
-    // Debug para verificar o formData
-    console.log('Arquivo sendo enviado:', this.selectedFile);
     formData.forEach((value, key) => {
       console.log('FormData:', key, value);
     });
 
     this._homeService.home(formData).subscribe({
-      next: (response) => {
+      next: () => {
         this.isLoading = false;
-        console.log('Arquivo enviado com sucesso!', response);
         this.selectedFile = null;
+        console.log('Arquivo enviado com sucesso.');
       },
       error: (error) => {
         this.isLoading = false;

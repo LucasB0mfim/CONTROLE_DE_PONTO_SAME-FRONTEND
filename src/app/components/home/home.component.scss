@@ -46,18 +46,20 @@
   cursor: pointer;
   border: none;
   border-radius: 1vw;
-  background-color: #FF4C00;
+  background-image: linear-gradient(140deg, #FF4500 0%, #FF6347 30%, #FF7F50 45%);
+  background-size: 200% 200%;
   transition: all 0.2s ease-in;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), 0 4px 6px rgba(0, 0, 0, 0.25);
 
   &:active {
-    transition: all 0.2s ease-in;
+    transition: all 1s ease;
     top: 0.3vw;
   }
 
   &:hover {
-    transition: all 0.2s ease-in;
-    background-color: #FF7518;
+    transition: all 1s ease;
+    background-image: linear-gradient(140deg, #FF4500 0%, #FF6347 30%, #FF7F50 45%, #FF6347 70%, #FF4500 100%);
+    background-position: 100% 100%;
   }
 }
 
@@ -70,7 +72,7 @@
   height: 100%;
   cursor: pointer;
   border: none;
-  color: #f1f1f1;
+  color: #e5e5e2;
   font-weight: 400;
   font-style: normal;
   font-family: "Roboto", sans-serif;
@@ -95,7 +97,7 @@
   left: 0;
   position: absolute;
   text-align: center;
-  color: rgb(145, 1, 1);
+  color: #e5e5e2;
   font-size: 1.6vw;
 }
 
