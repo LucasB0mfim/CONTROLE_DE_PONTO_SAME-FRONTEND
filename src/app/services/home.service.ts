@@ -9,7 +9,7 @@ export class HomeService {
 
   home(formData: FormData) {
     return this._httpClient.post(
-      'http://localhost:3000/same-engenharia/api/automatizar/gerar-planilha',
+      'https://controledepontosame-backend-production.up.railway.app/same-engenharia/api/automatizar/gerar-planilha',
       formData
     );
   }
