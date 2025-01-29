@@ -11,13 +11,16 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class HomeComponent {
   private readonly _homeService = inject(HomeService);
+
   selectedFile: File | null = null;
   isLoading: boolean = false;
+  isSuccess: boolean = false;
   invalidFileMessage: boolean = false;
   nullFileMessage: boolean = false;
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
+
     if (file && file.type === 'text/csv') {
       this.selectedFile = file;
       this.invalidFileMessage = false;
@@ -25,6 +28,10 @@ export class HomeComponent {
     } else {
       this.invalidFileMessage = true;
       this.selectedFile = null;
+
+      setTimeout(() => {
+        this.invalidFileMessage = false;
+      }, 2000);
     }
   }
 
@@ -35,22 +42,21 @@ export class HomeComponent {
       return;
     }
 
-    this.invalidFileMessage = false;
-    this.nullFileMessage = false;
     this.isLoading = true;
 
     const formData = new FormData();
     formData.append('file', this.selectedFile, this.selectedFile.name);
 
-    formData.forEach((value, key) => {
-      console.log('FormData:', key, value);
-    });
-
     this._homeService.home(formData).subscribe({
       next: () => {
         this.isLoading = false;
         this.selectedFile = null;
+        this.isSuccess = true;
         console.log('Arquivo enviado com sucesso.');
+
+        setTimeout(() => {
+          this.isSuccess = false;
+        }, 2000);
       },
       error: (error) => {
         this.isLoading = false;

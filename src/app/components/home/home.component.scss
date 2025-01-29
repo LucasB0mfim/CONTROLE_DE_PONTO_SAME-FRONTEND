@@ -1,6 +1,5 @@
 .home__container {
   height: 100vh;
-  background: #292927;
 }
 
 .home__form {
@@ -80,8 +79,15 @@
   background-color: transparent;
 }
 
+.home__button-file {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .button-spinner {
-  display: inline-block;
+  display: flex;
+  max-height: 100%;
 }
 
 ::ng-deep .button-spinner circle {
@@ -124,6 +130,11 @@
     height: 10vh;
     border-radius: 1vh;
     font-size: 5vw;
+  }
+
+  .button-spinner {
+    display: flex;
+    max-height: 50%;
   }
 
   .home__alert-message-error {
