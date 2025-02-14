@@ -9,7 +9,7 @@ export class HomeService {
 
   home(formData: FormData) {
     return this._httpClient.post(
-      'https://controledepontosame-backend-production.up.railway.app/same-engenharia/api/gerar-planilha/gerar-planilha',
+      'https://controledepontosame-backend-production.up.railway.app/same-engenharia/api/google-sheets/gerar-planilha',
       formData
     );
   }
